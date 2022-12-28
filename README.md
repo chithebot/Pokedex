@@ -1,12 +1,12 @@
-#Pokédex
+# Pokédex
 
-##Introduction
+## Introduction
 In search for Pokémon? You've come to the right place. Search for Pokémon using this Pokédex application.
 
-##Information
+## Information
 The Pokédex is compatible with Windows and macOS. It was made in SFML and uses the graphics and audio modules of SFML.
 
-##Instructions
+## Instructions
 The source files are provided, but a few of things need to be done in order to run this application properly.
 
 1. [Download](https://www.sfml-dev.org/download/sfml/2.5.1/) the appropriate version of SFML for your compiler.
