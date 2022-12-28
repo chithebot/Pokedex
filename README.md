@@ -4,7 +4,9 @@
 In search for Pokémon? You've come to the right place. Search for Pokémon using this Pokédex application.
 
 ## Information
-The Pokédex is compatible with Windows and macOS. It was made in SFML and uses the graphics and audio modules of SFML.
+This appllication is compatible with Windows, macOS, and Linux. SFML is required for this application to run properly. Specifically, the graphics and audio modules, of SFML, are used in this application.
+
+The Pokédex is still a work in progress as there are still features to be added. However, it is fully functional to search for the first 56 Pokémons by their name or national Pokédex number.
 
 ## Instructions
 The source files are provided, but a few of things need to be done in order to run this application properly.
