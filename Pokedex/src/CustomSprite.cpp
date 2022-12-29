@@ -1,6 +1,6 @@
 #include "CustomSprite.h"
 
-CustomSprite::CustomSprite() : CustomSprite(sf::Texture()) { }
+CustomSprite::CustomSprite() : sprite() { }
 
 CustomSprite::CustomSprite(const sf::Texture& texture) : sprite(texture) { }
 

@@ -1,6 +1,6 @@
 #include "ScrollableCustomSprite.h"
 
-ScrollableCustomSprite::ScrollableCustomSprite() : ScrollableCustomSprite(sf::Texture()) { }
+ScrollableCustomSprite::ScrollableCustomSprite() : CustomSprite(), scrollSpeed(40.f) { }
 
 ScrollableCustomSprite::ScrollableCustomSprite(const sf::Texture& texture, float scrollSpeed)
 	: CustomSprite(texture), initialPositionY(0.f), scrollSpeed(scrollSpeed) { }
