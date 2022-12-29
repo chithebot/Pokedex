@@ -89,30 +89,39 @@ void SpriteMatrix::repositionSprites()
 	float initialX = container.getPosition().x;
 	float y = container.getPosition().y + padding;
 
-	// Positioning each sprite in rows
-	for (unsigned i = 0; i < sprites->size(); ++i)
+	// Handles centering of a matrix containing only one sprite
+	if (sprites->size() == 1)
 	{
-		CustomSprite& current = sprites->at(i);
-
-		// Handles the first column sprites (except the first)
-		if (i % columns == 0)
+		Position::centerObject(container, sprites->at(0));
+	}
+	// Handles positioning of sprites in matrix which contains more than one sprite
+	else if (sprites->size() > 1)
+	{
+		// Positioning each sprite in rows
+		for (unsigned i = 0; i < sprites->size(); ++i)
 		{
-			if (i != 0)
+			CustomSprite& current = sprites->at(i);
+
+			// Handles the first column sprites (except the first)
+			if (i % columns == 0)
 			{
-				y = y + padding + current.getSize().y;
-			}
-			current.setPosition({ initialX, y });
+				if (i != 0)
+				{
+					y = y + padding + current.getSize().y;
+				}
+				current.setPosition({ initialX, y });
 
-			// Handles centering for case of 1 column per row
-			if (columns == 1)
-				Position::centerX(container, current);
-		}
-		// Handles sprites at columns other than first
-		else
-		{
-			CustomSprite& previous = sprites->at(i - 1);
-			Position::rightOnly(previous, current, padding);
-			current.setPosition({ current.getPosition().x, y });
+				// Handles centering for case of 1 column per row
+				if (columns == 1)
+					Position::centerX(container, current);
+			}
+			// Handles sprites at columns other than first
+			else
+			{
+				CustomSprite& previous = sprites->at(i - 1);
+				Position::rightOnly(previous, current, padding);
+				current.setPosition({ current.getPosition().x, y });
+			}
 		}
 	}
 }

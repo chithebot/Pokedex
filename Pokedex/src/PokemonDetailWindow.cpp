@@ -39,7 +39,7 @@ void PokemonDetailWindow::runDetailWindow(const std::string& data)
 	initializeContainer(background, left, right);
 
 	// Setting up left container elements (name, number, image panel)
-	CustomSprite image(Images::get("Assets/Textures/Images/" + name + ".png"));
+	CustomSprite image(Images::get("Assets/Textures/Images/Pokemon/" + name + ".png"));
 	initializeImagePanel(image, left);
 
 	// Setting up right container elements (information panel)

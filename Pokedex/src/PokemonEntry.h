@@ -48,6 +48,7 @@ private:
 	void positionText();
 	void positionTypeSprite();
 	void resizeThumbnail();
+	void resizeTypeSprites();
 	void extractIntoSpriteVector(const std::string& folderPath);
 private:
 	Thumbnail thumbnail;

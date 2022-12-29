@@ -10,25 +10,40 @@
 #include "DropdownMenu.h"
 #include "PokemonEntryList.h"
 #include "ScrollableCustomSprite.h"
+#include "MusicPlaylist.h"
 
-void initializeHeader(sf::RenderWindow& window, sf::Sprite& logo,
-	sf::RectangleShape& headerBackground, sf::RectangleShape& headerLayer,
-	TextInput& searchBar, sf::Text& instructions, DropdownMenu& filter);
+class Pokedex
+{
+public:
+	Pokedex();
+	Pokedex(const sf::Vector2u& videoSize);
+	~Pokedex();
+	void run();
+private:
+	void initializePlaylist();
+	void initializeHeaderElements();
+	void initializeMainElements();
+	void drawMembers();
+	void scrollEvent(sf::View& view, float initialScrollBound, sf::Event event);
+	void pollFilterButtons();
+private:
+	// ESSENTIAL MEMBERS
+	sf::RenderWindow* window;
+	MusicPlaylist* playlist;
+	float scrollSpeed;
 
-void initializeMain(sf::RenderWindow& window, ScrollableCustomSprite& mainBackground1,
-	sf::RectangleShape& mainBackground2, PokemonEntryList& entryList, 
-	sf::RectangleShape& headerBackground);
+	// HEADER ELEMENTS
+	sf::Sprite* logo;
+	sf::RectangleShape* headerBackground;
+	sf::RectangleShape* headerLayer;
+	TextInput* searchBar;
+	sf::Text* instructions;
+	DropdownMenu* filter;
 
-void drawHeaderElements(sf::RenderWindow& window, sf::Sprite& logo,
-	sf::RectangleShape& headerBackground, sf::RectangleShape& headerLayer,
-	TextInput& searchBar, sf::Text& instructions, DropdownMenu& filter);
-
-void drawMainElements(sf::RenderWindow& window, ScrollableCustomSprite& mainBackground1,
-	sf::RectangleShape& mainBackground2, PokemonEntryList& entryList);
-
-template <typename LIST_TYPE>
-void pollFilterButtons(DropdownMenu& filter, LIST_TYPE& list);
-
-#include "PokedexTemplate.cpp"
+	// MAIN ELEMENTS
+	PokemonEntryList* entryList;
+	ScrollableCustomSprite* mainBackground;
+	sf::RectangleShape* mainLayer;
+};
 
 #endif // SFML_GUI_PROJECT_POKEDEX_H

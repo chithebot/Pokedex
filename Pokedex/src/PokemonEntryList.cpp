@@ -45,6 +45,7 @@ void PokemonEntryList::setEntryHeight(float height)
 	// Setting new height for each entry
 	for (PokemonEntry*& entry_ptr : entries)
 		entry_ptr->setSize({entry_ptr->getSize().x, height});
+	resizeContainer();
 }
 
 void PokemonEntryList::setCharacterSize(unsigned size)
@@ -212,7 +213,6 @@ void PokemonEntryList::onClickDetailPanel()
 		entry_ptr->onClick(PokemonDetailWindow::runDetailWindow, PokemonMap::get(pokemonNumber));
 		entry_ptr->disableState(PRESSED);
 	}
-
 }
 
 void PokemonEntryList::make_heap(std::vector<PokemonEntry*>& source) const
