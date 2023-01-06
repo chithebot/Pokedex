@@ -1,13 +1,12 @@
 #include "Pokedex.h"
 
-Pokedex::Pokedex() : Pokedex({1600, 900}) { }
+Pokedex::Pokedex() : Pokedex({ sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height }) { }
 
 Pokedex::Pokedex(const sf::Vector2u& size)
 	: window(new sf::RenderWindow(sf::VideoMode(size.x, size.y, sf::VideoMode::getDesktopMode().bitsPerPixel), "Pokédex")),
 	playlist(new MusicPlaylist()), scrollSpeed(75.f), logo(new sf::Sprite()), headerBackground(new sf::RectangleShape()),
 	headerLayer(new sf::RectangleShape()), searchBar(new TextInput()), instructions(new sf::Text()), filter(new DropdownMenu()),
-	entryList(new PokemonEntryList()), mainBackground(new ScrollableCustomSprite(Images::get("Assets/Textures/Images/pokeball_background.jpg"))),
-	mainLayer(new sf::RectangleShape())
+	entryList(new PokemonEntryList()), mainBackground(new ScrollableCustomSprite()), mainLayer(new sf::RectangleShape())
 {
 	window->setFramerateLimit(60);
 	initializePlaylist();
@@ -103,9 +102,11 @@ void Pokedex::initializeHeaderElements()
 	// Setting up header background
 	headerBackground->setSize({ winSize.x, winSize.y * 0.4f });
 	headerBackground->setFillColor(sf::Color(50, 50, 50));
-	headerBackground->setPosition({ 0.f, 0.f });
 	headerBackground->setOutlineThickness(3.f);
 	headerBackground->setOutlineColor(sf::Color::Black);
+	headerBackground->setPosition({ 0.f, 0.f });
+
+	// Positioning logo
 	Position::upperLeft(*headerBackground, *logo, winSize.y * 0.028f);
 	Position::centerX(*headerBackground, *logo);
 	
@@ -151,12 +152,12 @@ void Pokedex::initializeHeaderElements()
 	filter->setCurrentItemFillColor(sf::Color::White);
 	filter->setCurrentItemHoverColor(sf::Color::White);
 	filter->setCurrentItemTextColor(sf::Color(25, 25, 25));
-	filter->setButtonSize({ 225.f, 50.f });
+	filter->setButtonSize({ winSize.x * 0.14f, winSize.y * 0.055f });
 	filter->setButtonTextSize(14);
 	filter->setButtonFillColor(sf::Color::White);
 	filter->setButtonHoverColor(sf::Color(25, 25, 25));
 	filter->setButtonTextColor(sf::Color(100, 100, 100));
-	Position::bottomRight(*headerBackground, *filter, 30.f);
+	Position::bottomRight(*headerBackground, *filter, winSize.y * 0.033f);
 }
 
 void Pokedex::initializeMainElements()
@@ -173,12 +174,12 @@ void Pokedex::initializeMainElements()
 	entryList->setEntryHeight(300);
 
 	// Setting up main background
-	/*mainBackground->setTexture(Images::get("Assets/Textures/Images/pokeball_background.jpg"));*/
+	mainBackground->setTexture(Images::get("Assets/Textures/Images/pokeball_background.jpg"));
 	mainBackground->setScrollSpeed(scrollSpeed);
 	mainBackground->setSize({ winSize.x, winSize.y });
 	mainBackground->setPosition({ 0.f, 0.f });
 
-	// Setting up main layer
+	// Setting up main layer and positioning pokemon entry list
 	mainLayer->setSize(entryList->getSize());
 	mainLayer->setFillColor(sf::Color(50, 50, 50, 99));
 	mainLayer->setOutlineColor(sf::Color(25, 25, 25));
@@ -186,7 +187,6 @@ void Pokedex::initializeMainElements()
 	Position::down(*headerBackground, *mainLayer);
 	Position::centerX(*headerBackground, *mainLayer);
 	entryList->setPosition(mainLayer->getPosition());
-	mainLayer->setSize(entryList->getSize());
 }
 
 void Pokedex::drawMembers()
