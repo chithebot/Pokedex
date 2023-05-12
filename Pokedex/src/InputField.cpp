@@ -50,7 +50,11 @@ void InputField::setCharacterColor(const sf::Color& color) { text.setFillColor(c
 
 void InputField::setCharacterFont(const sf::Font& font) { text.setFont(font); }
 
-void InputField::setCursorTexture(const sf::Texture& texture) { cursor.setTexture(texture); }
+void InputField::setCursorTexture(const sf::Texture& texture)
+{
+	cursor.setTexture(texture);
+	resize();
+}
 
 void InputField::setLength(unsigned length)
 {

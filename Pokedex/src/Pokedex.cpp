@@ -113,6 +113,7 @@ void Pokedex::initializeHeaderElements()
 	// Setting up search bar
 	searchBar->setCharacterFont(Fonts::get("Assets/Fonts/Product-Sans-Regular.ttf"));
 	searchBar->setLabelFont(Fonts::get("Assets/Fonts/OpenSans-Bold.ttf"));
+	searchBar->setCursorTexture(Images::get("Assets/Textures/System/text_cursor.png"));
 	searchBar->setLength(10);
 	searchBar->setCharacterColor(sf::Color::Black);
 	searchBar->setCharacterSize(36);
