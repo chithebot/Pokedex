@@ -160,9 +160,7 @@ void PokemonDetailWindow::initializeSpriteVector(std::vector<CustomSprite>& spri
 {
 	// Initializing sprite vector with given data
 	for (const std::string& d : data)
-	{
 		sprites.push_back(Images::get(folderPath + d + ".png"));
-	}
 }
 
 void PokemonDetailWindow::initializeInfoPanel(sf::Text& headerText, sf::Text& tName, 

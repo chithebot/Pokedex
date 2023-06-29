@@ -2,8 +2,8 @@
 
 SpriteMatrix::SpriteMatrix() : SpriteMatrix(nullptr) { }
 
-SpriteMatrix::SpriteMatrix(std::vector<CustomSprite>* spritePtr, unsigned columns, float padding)
-	: sprites(spritePtr), columns(columns), padding(padding)
+SpriteMatrix::SpriteMatrix(std::vector<CustomSprite>* spritePtr, unsigned columns, float padding, bool centered)
+	: sprites(spritePtr), columns(columns), padding(padding), centered(centered)
 {
 	container.setFillColor(sf::Color::Transparent);
 	setContainerWidth(300.f);
@@ -18,6 +18,8 @@ float SpriteMatrix::getContainerWidth() const { return container.getSize().x; }
 unsigned SpriteMatrix::getColumns() const { return columns; }
 
 const sf::Vector2f& SpriteMatrix::getPosition() const { return container.getPosition(); }
+
+bool SpriteMatrix::getCentered() const { return centered; }
 
 void SpriteMatrix::setContainerWidth(float width)
 {
@@ -36,6 +38,12 @@ void SpriteMatrix::setColumns(unsigned n)
 void SpriteMatrix::setPosition(const sf::Vector2f& position)
 {
 	container.setPosition(position);
+	repositionSprites();
+}
+
+void SpriteMatrix::setCentered(bool c)
+{
+	centered = c;
 	repositionSprites();
 }
 
@@ -90,12 +98,12 @@ void SpriteMatrix::repositionSprites()
 	float y = container.getPosition().y + padding;
 
 	// Handles centering of a matrix containing only one sprite
-	if (sprites->size() == 1)
+	if (sprites->size() == 1 && centered)
 	{
 		Position::centerObject(container, sprites->at(0));
 	}
 	// Handles positioning of sprites in matrix which contains more than one sprite
-	else if (sprites->size() > 1)
+	else
 	{
 		// Positioning each sprite in rows
 		for (unsigned i = 0; i < sprites->size(); ++i)

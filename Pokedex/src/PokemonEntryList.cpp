@@ -310,6 +310,7 @@ void PokemonEntryList::repositionEntries()
 		std::vector<PokemonEntry*> heap(entries);
 		make_heap(heap);
 
+		// Positions each Pokemon entry in accordance to their position in the heap (and visibility)
 		unsigned entriesPositioned = 0;									// Tracks number of entries drawn
 		float y = getPosition().y + verticalPadding;					// Tracks the starting y-position of entries on each row
 		float x = getPosition().x + horizontalPadding;					// Tracks the starting x-position

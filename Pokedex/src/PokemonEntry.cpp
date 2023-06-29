@@ -184,6 +184,7 @@ void PokemonEntry::positionTypeSprite()
 {
 	// Creating SpriteMatrix to aid in positioning
 	SpriteMatrix matrix(&types, 2);
+	matrix.setCentered(true);
 	matrix.setContainerWidth(getSize().x * 0.6f);
 	Position::down(number, matrix, textPadding);
 	Position::centerX(number, matrix);
@@ -195,11 +196,6 @@ void PokemonEntry::resizeThumbnail()
 	float x = getSize().x - 2.f * thumbnailPadding;
 	float y = x;
 	thumbnail.setSize({ x, y });
-}
-
-void PokemonEntry::resizeTypeSprites()
-{
-
 }
 
 void PokemonEntry::extractIntoSpriteVector(const std::string& folderPath)
